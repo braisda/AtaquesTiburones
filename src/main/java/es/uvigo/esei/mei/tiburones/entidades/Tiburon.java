@@ -35,7 +35,7 @@ public class Tiburon implements Serializable {
 	@Column(name = "edad")
 	private Integer edad;
 	
-	@ManyToMany(mappedBy="tiburones")
+	@ManyToMany
 	private List<Investigador> investigadores = new ArrayList<>();
 
 	@OneToMany(mappedBy="tiburon", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -81,6 +81,22 @@ public class Tiburon implements Serializable {
 
 	public void setEdad(Integer edad) {
 		this.edad = edad;
+	}
+
+	public List<Investigador> getInvestigadores() {
+		return investigadores;
+	}
+
+	public void setInvestigadores(List<Investigador> investigadores) {
+		this.investigadores = investigadores;
+	}
+
+	public List<Ataque> getAtaques() {
+		return ataques;
+	}
+
+	public void setAtaques(List<Ataque> ataques) {
+		this.ataques = ataques;
 	}
 
 	@Override

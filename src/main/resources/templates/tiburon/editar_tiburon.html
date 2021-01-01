@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html th:replace="~{fragmentos/plantilla::pagina(~{this::title}, ~{this::body})}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Editar/crear tiburon</title>
+</head>
+
+<body>
+	<h1 class="center-text" th:text="${esNuevo} ? 'Crear tiburon' : 'Editar tiburon'"></h1>
+
+	<form th:object="${tiburon}" class="form-horizontal" id="tiburon-form" method="post">
+		<div class="form-group has-feedback">
+
+			<div class="form-group">
+				<label class="col-2 control-label">Id</label>
+				<label class="col-10 form-control" th:text="${esNuevo} ? '-' : *{id}" /></label>
+				<label class="col-2 control-label">Raza</label>
+				<input class="col-10 form-control" th:field="*{raza}" size="30" maxlength="100" />
+				<label class="col-2 control-label">Tamaño</label>
+				<input class="col-10 form-control" th:field="*{tamanho}" size="30" maxlength="100" />
+				<label class="col-10 control-label">Investigador (Para seleccionar mas de 1 investigador mantenga pulsada la tecla 'Ctrl')</label>
+				<select class="col-10 form-control" th:field="*{investigadores}" multiple="multiple">
+					<option th:each="i : ${investigadores}" th:value="${i.id}" th:text="${i.nombre}">Nombre investigador</option>
+				</select>
+				<label class="col-2 control-label">Edad</label>
+				<input class="col-10 form-control" th:field="*{edad}" size="30" maxlength="100" />
+			</div>
+			<div class="form-group">
+				<button class="btn btn-lg btn-block btn-primary col-2" th:text="${esNuevo} ? 'Crear' : 'Guardar'" type="submit">Guardar</button>
+
+				<a class="btn btn-lg btn-block btn-secondary col-2" th:href="@{/tiburones/}">Cancelar</a>
+			</div>
+		</div>
+	</form>
+
+
+
+</body>
+</html>

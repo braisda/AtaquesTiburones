@@ -97,7 +97,7 @@ public class InvestigadorController {
 	 * @PathVariable vincula el parametro a un segmento de la URI
 	 */
 	@GetMapping("{id}/eliminar")
-	public String borrarCliente(@PathVariable("id") Long id, Model modelo) {
+	public String borrarInvestigador(@PathVariable("id") Long id, Model modelo) {
 		Investigador investigador = investigadorService.buscarPorId(id);
 		if (investigador != null) {
 			investigadorService.eliminar(investigador);

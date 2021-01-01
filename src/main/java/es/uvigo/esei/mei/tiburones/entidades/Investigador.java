@@ -28,7 +28,7 @@ public class Investigador implements Serializable {
 	@Column(name = "institucion")
 	private String institucion;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy="investigadores")
 	private List<Tiburon> tiburones = new ArrayList<>();;
 
 	public Investigador() {
@@ -63,7 +63,7 @@ public class Investigador implements Serializable {
 		this.institucion = institucion;
 	}
 
-	public Collection<Tiburon> getTiburones() {
+	public List<Tiburon> getTiburones() {
 		return tiburones;
 	}
 

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html th:replace="~{fragmentos/plantilla::pagina(~{this::title}, ~{this::body})}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Listado de tiburones</title>
+</head>
+
+<body>
+	<h1 class="center-text">Listado de tiburones</h1>
+
+	<form th:action="@{/tiburones}" method="post" class="form-horizontal" id="buscar-form">
+		<div class="row">
+			<div class="col-10 form-group">
+				<div class="control-group" id="nombre">
+					<label class="col-2 control-label">Raza</label>
+					<input class="col-10 form-control" th:name="raza" size="30" maxlength="80" />
+				</div>
+				<div class="control-group" id="investigador">
+					<label class="col-2 control-label">Investigador</label>
+					<select class="col-10 form-control" th:name="idInvestigador">
+						<option th:each="investigador : ${investigadores}" th:value="${investigador.id}" th:text="${investigador.nombre}">Nombre investigador</option>
+					</select>
+				</div>
+			</div>
+
+
+			<div class="col-2 form-group">
+				<button type="submit" class="btn btn-lg btn-block btn-primary">Buscar</button>
+				<button type="submit" class="btn btn-lg btn-block btn-primary">Buscar todos</button>
+			</div>
+		</div>
+	</form>
+
+
+	<table id="tiburones" class="table table-striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Raza</th>
+				<th>Tamaño</th>
+				<th>Edad</th>
+				<th>Investigador</th>
+				<th />
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="tiburon : ${tiburones}">
+				<td th:text="${tiburon.id}" />
+				<td><a th:href="@{/tiburones/__${tiburon.id}__}" th:text="${tiburon.raza}"></a></td>
+				<td th:text="${tiburon.tamanho}" />
+				<td th:text="${tiburon.edad}" />
+  				<td>
+  					<span th:if="${#lists.size(tiburon.investigadores) == 0}" th:text="'-'"></span>
+  					<a th:if="${#lists.size(tiburon.investigadores) == 1}" th:each="inv : ${tiburon.investigadores}"  th:href="@{/investigadores/__${inv.id}__}" th:text="${inv.nombre}"></a>
+  					<a th:if="${#lists.size(tiburon.investigadores) > 1}" th:each="inv : ${tiburon.investigadores}"  th:href="@{/investigadores/__${inv.id}__}" th:text="${inv.nombre + ' / '}"></a>
+  					<span th:unless="${tiburon.investigadores}">-</span>
+				</td>
+				<td>
+					<a class="btn btn-primary" th:href="@{/tiburones/__${tiburon.id}__}">Editar</a>
+					<a class="btn btn-primary" th:href="@{/tiburones/__${tiburon.id}__/eliminar}">Borrar</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<br />
+
+	<a class="col-2 btn btn-lg btn-block btn-primary" th:href="@{/tiburones/nuevo}">Nuevo tiburon</a>
+</body>
+</html>
