@@ -26,7 +26,7 @@ public class Investigador implements Serializable {
 	private String nombre;
 	
 	@Column(name = "institucion")
-	private Boolean instiucion;
+	private String institucion;
 	
 	@ManyToMany
 	private List<Tiburon> tiburones = new ArrayList<>();;
@@ -34,9 +34,9 @@ public class Investigador implements Serializable {
 	public Investigador() {
 	}
 
-	public Investigador(String nombre, Boolean instiucion) {
+	public Investigador(String nombre, String institucion) {
 		this.nombre = nombre;
-		this.instiucion = instiucion;
+		this.institucion = institucion;
 	}
 
 	public Long getId() {
@@ -55,12 +55,12 @@ public class Investigador implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public Boolean getInstiucion() {
-		return instiucion;
+	public String getInstitucion() {
+		return institucion;
 	}
 
-	public void setInstiucion(Boolean instiucion) {
-		this.instiucion = instiucion;
+	public void setInstitucion(String institucion) {
+		this.institucion = institucion;
 	}
 
 	public Collection<Tiburon> getTiburones() {
@@ -76,7 +76,7 @@ public class Investigador implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((instiucion == null) ? 0 : instiucion.hashCode());
+		result = prime * result + ((institucion == null) ? 0 : institucion.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
 	}
@@ -95,10 +95,10 @@ public class Investigador implements Serializable {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (instiucion == null) {
-			if (other.instiucion != null)
+		if (institucion == null) {
+			if (other.institucion != null)
 				return false;
-		} else if (!instiucion.equals(other.instiucion))
+		} else if (!institucion.equals(other.institucion))
 			return false;
 		if (nombre == null) {
 			if (other.nombre != null)
@@ -110,7 +110,7 @@ public class Investigador implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Investigador [id=" + id + ", nombre=" + nombre + ", instiucion=" + instiucion + "]";
+		return "Investigador [id=" + id + ", nombre=" + nombre + ", institucion=" + institucion + "]";
 	}
 
 }
