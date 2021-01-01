@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html th:replace="~{fragmentos/plantilla::pagina(~{this::title}, ~{this::body})}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Editar/crear actividad</title>
+</head>
+
+<body>
+	<h1 class="center-text" th:text="${esNuevo} ? 'Crear actividad' : 'Editar actividad'"></h1>
+
+	<form th:object="${actividad}" class="form-horizontal" id="actividad-form" method="post">
+		<div class="form-group has-feedback">
+
+			<div class="form-group">
+				<label class="col-2 control-label">Id</label>
+				<label class="col-10 form-control" th:text="${esNuevo} ? '-' : *{id}" /></label>
+				<label class="col-2 control-label">Tipo</label>
+				<input class="col-10 form-control" th:field="*{tipo}" size="30" maxlength="100" />
+			</div>
+			<div class="form-group">
+				<button class="btn btn-lg btn-block btn-primary col-2" th:text="${esNuevo} ? 'Crear' : 'Guardar'" type="submit">Guardar</button>
+
+				<a class="btn btn-lg btn-block btn-secondary col-2" th:href="@{/actividades/}">Cancelar</a>
+			</div>
+		</div>
+	</form>
+
+
+
+</body>
+</html>

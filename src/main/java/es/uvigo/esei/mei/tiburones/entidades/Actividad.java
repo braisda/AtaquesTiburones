@@ -29,8 +29,7 @@ public class Actividad implements Serializable {
 	private Long id;
 	
 	@Column(name = "tipo")
-	@Enumerated(EnumType.STRING)
-	private TipoActividad tipo;
+	private String tipo;
 	
 	@OneToMany(mappedBy="actividad", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@OrderBy("id asc")
@@ -39,23 +38,34 @@ public class Actividad implements Serializable {
 	public Actividad() {
 	}
 	
-	public Actividad(TipoActividad tipo) {
+	public Actividad(String tipo) {
 		this.tipo = tipo;
 	}
 
 	public Long getId() {
 		return id;
 	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public TipoActividad getTipo() {
+	
+	public String getTipo() {
 		return tipo;
 	}
-	public void setTipo(TipoActividad tipo) {
+	
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 	
+	public List<Ataque> getAtaques() {
+		return ataques;
+	}
+
+	public void setAtaques(List<Ataque> ataques) {
+		this.ataques = ataques;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

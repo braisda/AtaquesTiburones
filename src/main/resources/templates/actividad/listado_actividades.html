@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html th:replace="~{fragmentos/plantilla::pagina(~{this::title}, ~{this::body})}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Listado de actividades</title>
+</head>
+
+<body>
+	<h1 class="center-text">Listado de actividades</h1>
+
+	<form th:action="@{/actividades}" method="post" class="form-horizontal" id="buscar-form">
+		<div class="row">
+			<div class="col-10 form-group">
+				<div class="control-group" id="tipo">
+					<label class="col-2 control-label">Tipo</label>
+					<input class="col-10 form-control" th:name="tipo" size="30" maxlength="80" />
+				</div>
+			</div>
+
+
+			<div class="col-2 form-group">
+				<button type="submit" class="btn btn-lg btn-block btn-primary">Buscar</button>
+				<button type="submit" class="btn btn-lg btn-block btn-primary">Buscar todos</button>
+			</div>
+		</div>
+	</form>
+
+
+	<table id="actividades" class="table table-striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Tipo</th>
+				<th />
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="actividad : ${actividades}">
+				<td th:text="${actividad.id}" />
+				<td><a th:href="@{/actividades/__${actividad.id}__}" th:text="${actividad.tipo}"></a></td>
+				<td>
+				<a class="btn btn-primary" th:href="@{/actividades/__${actividad.id}__}">Editar</a>
+				<a class="btn btn-primary" th:href="@{/actividades/__${actividad.id}__/eliminar}">Borrar</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<br />
+
+	<a class="col-2 btn btn-lg btn-block btn-primary" th:href="@{/actividades/nuevo}">Nueva actividad</a>
+</body>
+</html>
