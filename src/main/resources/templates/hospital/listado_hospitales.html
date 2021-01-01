@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html th:replace="~{fragmentos/plantilla::pagina(~{this::title}, ~{this::body})}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Listado de hospitales</title>
+</head>
+
+<body>
+	<h1 class="center-text">Listado de hospitales</h1>
+
+	<form th:action="@{/hospitales}" method="post" class="form-horizontal" id="buscar-form">
+		<div class="row">
+			<div class="col-10 form-group">
+				<div class="control-group" id="tipo">
+					<label class="col-2 control-label">Nombre</label>
+					<input class="col-10 form-control" th:name="nombre" size="30" maxlength="80" />
+				</div>
+				<div class="control-group" id="tipo">
+					<label class="col-2 control-label">Ciudad</label>
+					<input class="col-10 form-control" th:name="ciudad" size="30" maxlength="80" />
+				</div>
+				<div class="control-group" id="pais">
+					<label class="col-2 control-label">Pais</label>
+					<input class="col-10 form-control" th:name="pais" size="30" maxlength="80" />
+				</div>
+			</div>
+
+
+			<div class="col-2 form-group">
+				<button type="submit" class="btn btn-lg btn-block btn-primary">Buscar</button>
+				<button type="submit" class="btn btn-lg btn-block btn-primary">Buscar todos</button>
+			</div>
+		</div>
+	</form>
+
+
+	<table id="hospitales" class="table table-striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Nombre</th>
+				<th>Ciudad</th>
+				<th>Pais</th>
+				<th />
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="hospital : ${hospitales}">
+				<td th:text="${hospital.id}" />
+				<td><a th:href="@{/hospitales/__${hospital.id}__}" th:text="${hospital.nombre}"></a></td>
+				<td th:text="${hospital.ciudad}" />
+				<td th:text="${hospital.pais}" />
+				<td>
+					<a class="btn btn-primary" th:href="@{/hospitales/__${hospital.id}__}">Editar</a>
+					<a class="btn btn-primary" th:href="@{/hospitales/__${hospital.id}__/eliminar}">Borrar</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<br />
+
+	<a class="col-2 btn btn-lg btn-block btn-primary" th:href="@{/hospitales/nuevo}">Nuevo hospital</a>
+</body>
+</html>
