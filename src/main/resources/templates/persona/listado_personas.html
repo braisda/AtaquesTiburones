@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html th:replace="~{fragmentos/plantilla::pagina(~{this::title}, ~{this::body})}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Listado de victimas</title>
+</head>
+
+<body>
+	<h1 class="center-text">Listado de victimas</h1>
+
+	<form th:action="@{/personas}" method="post" class="form-horizontal" id="buscar-form">
+		<div class="row">
+			<div class="col-10 form-group">
+				<div class="control-group" id="nombre">
+					<label class="col-2 control-label">Nombre</label>
+					<input class="col-10 form-control" th:name="nombre" size="30" maxlength="80" />
+				</div>
+				<div class="control-group" id="paisNacimiento">
+					<label class="col-2 control-label">Pais nacimiento</label>
+					<input class="col-10 form-control" th:name="paisNacimiento" size="30" maxlength="80" />
+				</div>
+				<div class="control-group" id="fechaNacimiento">
+					<label class="col-3 control-label">Fecha nacimiento</label>
+					<input class="col-10 form-control" type="date" th:name="fechaNacimiento" size="30" maxlength="80" />
+				</div>
+			</div>
+
+
+			<div class="col-2 form-group">
+				<button type="submit" class="btn btn-lg btn-block btn-primary">Buscar</button>
+				<button type="submit" class="btn btn-lg btn-block btn-primary">Buscar todos</button>
+			</div>
+		</div>
+	</form>
+
+
+	<table id="personas" class="table table-striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Nombre</th>
+				<th>Pais de nacimiento</th>
+				<th>Fecha de nacimiento</th>
+				<th />
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="persona : ${personas}">
+				<td th:text="${persona.id}" />
+				<td><a th:href="@{/personas/__${persona.id}__}" th:text="${persona.nombre}"></a></td>
+				<td th:text="${persona.paisNacimiento}" />
+				<td th:text="${persona.fechaNacimiento}" />
+				<td>
+					<a class="btn btn-primary" th:href="@{/personas/__${persona.id}__}">Editar</a>
+					<a class="btn btn-primary" th:href="@{/personas/__${persona.id}__/eliminar}">Borrar</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<br />
+
+	<a class="col-2 btn btn-lg btn-block btn-primary" th:href="@{/personas/nuevo}">Nueva victima</a>
+</body>
+</html>

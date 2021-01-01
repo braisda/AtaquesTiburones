@@ -31,8 +31,7 @@ public class Persona implements Serializable {
 	private String nombre;
 	
 	@Column(name = "fecha_nacimiento")
-	@Temporal(TemporalType.DATE)
-	private Date fechaNacimiento;
+	private String fechaNacimiento;
 	
 	@Column(name = "pais_nacimiento")
 	private String paisNacimiento;
@@ -44,7 +43,7 @@ public class Persona implements Serializable {
 	public Persona() {
 	}
 	
-	public Persona(String nombre, Date fechaNacimiento, String paisNacimiento) {
+	public Persona(String nombre, String fechaNacimiento, String paisNacimiento) {
 		this.nombre = nombre;
 		this.fechaNacimiento = fechaNacimiento;
 		this.paisNacimiento = paisNacimiento;
@@ -62,10 +61,10 @@ public class Persona implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Date getFechaNacimiento() {
+	public String getFechaNacimiento() {
 		return fechaNacimiento;
 	}
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(String fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	public String getPaisNacimiento() {
