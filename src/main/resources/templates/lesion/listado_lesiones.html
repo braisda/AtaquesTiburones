@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html th:replace="~{fragmentos/plantilla::pagina(~{this::title}, ~{this::body})}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Listado de lesiones</title>
+</head>
+
+<body>
+	<h1 class="center-text">Listado de lesiones</h1>
+
+	<form th:action="@{/lesiones}" method="post" class="form-horizontal" id="buscar-form">
+		<div class="row">
+			<div class="col-10 form-group">
+				<div class="control-group" id="tipo">
+					<label class="col-2 control-label">Tipo</label>
+					<input class="col-10 form-control" th:name="tipo" size="30" maxlength="80" />
+				</div>
+				<div class="control-group" id="mortal">
+					<label class="col-2 control-label">Mortal</label>
+					<input class="col-10 form-control" th:name="mortal" size="30" maxlength="80" />
+				</div>
+				<div class="control-group" id="descripcion">
+					<label class="col-3 control-label">Descripcion</label>
+					<input class="col-10 form-control" th:name="descripcion" size="30" maxlength="80" />
+				</div>
+				<div class="control-group" id="ataque">
+					<label class="col-2 control-label">Ataque</label>
+					<select class="col-10 form-control" th:name="ataque">
+						<option th:value="''" th:text="'Seleccionar'">Seleccionar</option>
+						<option th:each="ataque : ${ataques}" th:value="${ataque.id}" th:text="${ataque.id}">Codigo Ataque</option>
+					</select>
+				</div>
+				<div class="control-group" id="hospital">
+					<label class="col-2 control-label">Hospital</label>
+					<select class="col-10 form-control" th:name="hospital">
+						<option th:value="''" th:text="'Seleccionar'">Seleccionar</option>
+						<option th:each="hospital : ${hospitales}" th:value="${hospital.id}" th:text="${hospital.id}">Nombre hospital</option>
+					</select>
+				</div>
+			</div>
+
+
+			<div class="col-2 form-group">
+				<button type="submit" class="btn btn-lg btn-block btn-primary">Buscar</button>
+				<button type="submit" class="btn btn-lg btn-block btn-primary">Buscar todos</button>
+			</div>
+		</div>
+	</form>
+
+
+	<table id="lesiones" class="table table-striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Tipo</th>
+				<th>Mortal</th>
+				<th>Descripcion</th>
+				<th />
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="lesion : ${lesiones}">
+				<td th:text="${lesion.id}" />
+				<td><a th:href="@{/lesiones/__${lesion.id}__}" th:text="${lesion.tipo}"></a></td>
+				<td th:text="${lesion.mortal}" />
+				<td th:text="${lesion.descripcion}" />
+				<td>
+					<a class="btn btn-primary" th:href="@{/lesiones/__${lesion.id}__}">Editar</a>
+					<a class="btn btn-primary" th:href="@{/lesiones/__${lesion.id}__/eliminar}">Borrar</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<br />
+
+	<a class="col-2 btn btn-lg btn-block btn-primary" th:href="@{/lesiones/nuevo}">Nueva lesion</a>
+</body>
+</html>

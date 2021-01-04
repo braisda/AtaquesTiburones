@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html th:replace="~{fragmentos/plantilla::pagina(~{this::title}, ~{this::body})}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Editar/crear lesion</title>
+</head>
+
+<body>
+	<h1 class="center-text" th:text="${esNuevo} ? 'Crear lesion' : 'Editar lesion'"></h1>
+
+	<form th:object="${lesion}" class="form-horizontal" id="lesion-form" method="post">
+		<div class="form-group has-feedback">
+
+			<div class="form-group">
+				<label class="col-2 control-label">Id</label>
+				<label class="col-10 form-control" th:text="${esNuevo} ? '-' : *{id}" /></label>
+				<label class="col-2 control-label">Tipo</label>
+				<input class="col-10 form-control" th:field="*{tipo}" size="30" maxlength="100" />
+				<label class="col-2 control-label">Mortal</label>
+				<select class="col-10 form-control" th:field="*{mortal}">
+					<option th:value="true" th:text="Si">Si</option>
+					<option th:value="false" th:text="No">No</option>
+				</select>
+				<label class="col-2 control-label">Descripcion</label>
+				<input class="col-10 form-control" th:field="*{descripcion}" size="30" maxlength="100" />
+				<label class="col-10 control-label">Ataque</label>
+				<select class="col-10 form-control" th:field="*{ataque}">
+					<option th:each="a : ${ataquees}" th:value="${a.id}" th:text="${a.nombre}">Ataque</option>
+				</select>
+				<label class="col-10 control-label">Hospital</label>
+				<select class="col-10 form-control" th:field="*{hospital}">
+					<option th:each="h : ${hospitales}" th:value="${h.id}" th:text="${h.nombre}">Nombre hospital</option>
+				</select>
+				
+				
+			</div>
+			<div class="form-group">
+				<button class="btn btn-lg btn-block btn-primary col-2" th:text="${esNuevo} ? 'Crear' : 'Guardar'" type="submit">Guardar</button>
+
+				<a class="btn btn-lg btn-block btn-secondary col-2" th:href="@{/lesiones/}">Cancelar</a>
+			</div>
+		</div>
+	</form>
+
+
+
+</body>
+</html>

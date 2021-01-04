@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,9 +25,8 @@ public class Lesion implements Serializable {
 	@Column(name = "id")
 	private Long id;
 	
-	@Enumerated(EnumType.STRING)
 	@Column(name = "tipo")
-	private TipoLesion tipo;
+	private String tipo;
 	
 	@Column(name = "mortal")
 	private Boolean mortal;
@@ -45,12 +45,14 @@ public class Lesion implements Serializable {
 	public Lesion() {
 	}
 	
-	public Lesion(TipoLesion tipo, Boolean mortal, String descripcion) {
+	public Lesion(String tipo, Boolean mortal, String descripcion, Ataque ataque, Hospital hospital) {
 		this.tipo = tipo;
 		this.mortal = mortal;
 		this.descripcion = descripcion;
+		this.ataque = ataque;
+		this.hospital = hospital;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -59,11 +61,11 @@ public class Lesion implements Serializable {
 		this.id = id;
 	}
 	
-	public TipoLesion getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
 	
-	public void setTipo(TipoLesion tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 	
@@ -89,6 +91,14 @@ public class Lesion implements Serializable {
 
 	public void setAtaque(Ataque ataque) {
 		this.ataque = ataque;
+	}
+
+	public Hospital getHospital() {
+		return hospital;
+	}
+
+	public void setHospital(Hospital hospital) {
+		this.hospital = hospital;
 	}
 
 	@Override
