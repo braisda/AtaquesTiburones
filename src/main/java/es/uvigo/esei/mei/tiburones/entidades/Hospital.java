@@ -40,10 +40,11 @@ public class Hospital implements Serializable {
 	public Hospital() {
 	}
 
-	public Hospital(String nombre, String ciudad, String pais) {
+	public Hospital(String nombre, String ciudad, String pais, List<Lesion> lesiones) {
 		this.nombre = nombre;
 		this.ciudad = ciudad;
 		this.pais = pais;
+		this.lesiones = lesiones;
 	}
 
 	public Long getId() {
