@@ -12,7 +12,8 @@ import es.uvigo.esei.mei.tiburones.entidades.Tiburon;
 @Repository
 public interface LesionDAO extends JpaRepository<Lesion, Long>{
 	List<Lesion> findByTipoContaining(String patron);
-	List<Lesion> findByMortalContaining(String patron);
+	List<Lesion> findByMortalTrue();
+	List<Lesion> findByMortalFalse();
 	List<Lesion> findByDescripcionContaining(String patron);
 	List<Lesion> findByAtaque_id(Long ataque_id);
 	List<Lesion> findByHospital_id(Long hospital_id);
