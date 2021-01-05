@@ -16,7 +16,7 @@
 				<label class="col-10 form-control" th:text="${esNuevo} ? '-' : *{id}" /></label>
 				<label class="col-2 control-label">Raza</label>
 				<input class="col-10 form-control" th:field="*{raza}" size="30" maxlength="100" />
-				<label class="col-2 control-label">Tamaño</label>
+				<label class="col-10 control-label">Tamaño (Usar el caracter punto '.' para los decimales, la coma no es valida)</label>
 				<input class="col-10 form-control" th:field="*{tamanho}" size="30" maxlength="100" />
 				<label class="col-10 control-label">Investigador (Para seleccionar mas de 1 investigador mantenga pulsada la tecla 'Ctrl')</label>
 				<select class="col-10 form-control" th:field="*{investigadores}" multiple="multiple">

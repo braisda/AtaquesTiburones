@@ -2,7 +2,6 @@ package es.uvigo.esei.mei.tiburones.entidades;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
