@@ -78,8 +78,7 @@ public class LesionServiceImpl implements LesionService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Ataque> buscarAtaques() {
-		return new ArrayList<Ataque>();
-		//return ataqueDAO.findAll();
+		return ataqueDAO.findAll();
 	}
 	
 	@Override

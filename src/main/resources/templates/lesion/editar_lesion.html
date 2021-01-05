@@ -25,7 +25,7 @@
 				<input class="col-10 form-control" th:field="*{descripcion}" size="30" maxlength="100" />
 				<label class="col-10 control-label">Ataque</label>
 				<select class="col-10 form-control" th:field="*{ataque}">
-					<option th:each="a : ${ataquees}" th:value="${a.id}" th:text="${a.nombre}">Ataque</option>
+					<option th:each="a : ${ataques}" th:value="${a.id}" th:text="${a.fecha}">Ataque</option>
 				</select>
 				<label class="col-10 control-label">Hospital</label>
 				<select class="col-10 form-control" th:field="*{hospital}">

@@ -27,14 +27,14 @@
 					<label class="col-2 control-label">Ataque</label>
 					<select class="col-10 form-control" th:name="ataque">
 						<option th:value="''" th:text="'Seleccionar'">Seleccionar</option>
-						<option th:each="ataque : ${ataques}" th:value="${ataque.id}" th:text="${ataque.id}">Codigo Ataque</option>
+						<option th:each="ataque : ${ataques}" th:value="${ataque.id}" th:text="${ataque.id + ' - ' + ataque.fecha}">Codigo Ataque</option>
 					</select>
 				</div>
 				<div class="control-group" id="hospital">
 					<label class="col-2 control-label">Hospital</label>
 					<select class="col-10 form-control" th:name="hospital">
 						<option th:value="''" th:text="'Seleccionar'">Seleccionar</option>
-						<option th:each="hospital : ${hospitales}" th:value="${hospital.id}" th:text="${hospital.id}">Nombre hospital</option>
+						<option th:each="hospital : ${hospitales}" th:value="${hospital.id}" th:text="${hospital.id + ' - ' + hospital.nombre}">Nombre hospital</option>
 					</select>
 				</div>
 			</div>
