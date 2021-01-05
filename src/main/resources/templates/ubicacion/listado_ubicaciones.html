@@ -48,7 +48,7 @@
 				<td>
   					<span th:if="${#lists.size(ubicacion.ataques) == 0}" th:text="'-'"></span>
   					<a th:if="${#lists.size(ubicacion.ataques) == 1}" th:each="a : ${ubicacion.ataques}"  th:href="@{/ataques/__${a.id}__}" th:text="${a.id + ' - ' + a.fecha}"></a>
-  					<a th:if="${#lists.size(ubicacion.ataques) > 1}" th:each="a : ${ubicacion.ataques}"  th:href="@{/ataques/__${a.id}__}" th:text="${a.id + ' - ' + a.fecha}"></a>
+  					<a th:if="${#lists.size(ubicacion.ataques) > 1}" th:each="a : ${ubicacion.ataques}"  th:href="@{/ataques/__${a.id}__}" th:text="${a.id + ' - ' + a.fecha + ' / '}"></a>
   					<span th:unless="${ubicacion.ataques}">-</span>
 				</td>
 				<td>

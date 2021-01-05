@@ -54,7 +54,7 @@
 				<td>
   					<span th:if="${#lists.size(hospital.lesiones) == 0}" th:text="'-'"></span>
   					<a th:if="${#lists.size(hospital.lesiones) == 1}" th:each="l : ${hospital.lesiones}"  th:href="@{/lesiones/__${l.id}__}" th:text="${l.id + ' - ' + l.tipo}"></a>
-  					<a th:if="${#lists.size(hospital.lesiones) > 1}" th:each="l : ${hospital.lesiones}"  th:href="@{/lesiones/__${l.id}__}" th:text="${l.id + ' - ' + l.tipo}"></a>
+  					<a th:if="${#lists.size(hospital.lesiones) > 1}" th:each="l : ${hospital.lesiones}"  th:href="@{/lesiones/__${l.id}__}" th:text="${l.id + ' - ' + l.tipo + ' / '}"></a>
   					<span th:unless="${hospital.lesiones}">-</span>
 				</td>
 				<td>
