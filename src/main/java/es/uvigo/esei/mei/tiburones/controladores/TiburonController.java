@@ -36,11 +36,17 @@ public class TiburonController {
 	}
 
 	@PostMapping
-	public String actualizarListarTiburon(@RequestParam(required = false) String razaTiburon,
+	public String actualizarListarTiburon(@RequestParam(required = false) String raza,
+			@RequestParam(required = false) String tamanho,
+			@RequestParam(required = false) String edad,
 			@RequestParam(required = false) Long idInvestigador, Model modelo) {
 		List<Tiburon> tiburones;
-		if ((razaTiburon != null) && !razaTiburon.isEmpty()) {
-			tiburones = tiburonService.buscarPorRaza(razaTiburon);
+		if ((raza != null) && !raza.isEmpty()) {
+			tiburones = tiburonService.buscarPorRaza(raza);
+		}else if ((tamanho != null) && !tamanho.isEmpty()) {
+			tiburones = tiburonService.buscarPorTamanho(tamanho);
+		}else if ((edad != null) && !edad.isEmpty()) {
+			tiburones = tiburonService.buscarPorEdad(edad);
 		} else if (idInvestigador != null) {
 			tiburones = tiburonService.buscarPorInvestigador(idInvestigador);
 		} else {

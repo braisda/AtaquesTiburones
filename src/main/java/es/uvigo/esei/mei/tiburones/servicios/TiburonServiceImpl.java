@@ -54,6 +54,18 @@ public class TiburonServiceImpl implements TiburonService {
 	public List<Tiburon> buscarPorRaza(String patron) {
 		return tiburonDAO.findByRazaContaining(patron);
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Tiburon> buscarPorTamanho(String patron) {
+		return tiburonDAO.findByTamanho(Double.parseDouble(patron));
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Tiburon> buscarPorEdad(String patron) {
+		return tiburonDAO.findByEdad(Integer.parseInt(patron));
+	}
 
 	@Override
 	@Transactional(readOnly = true)

@@ -12,6 +12,8 @@ public interface TiburonService {
 	public Tiburon buscarPorId(Long id);
 	public List<Tiburon> buscarTodos();
 	public List<Tiburon> buscarPorRaza(String patron);
+	public List<Tiburon> buscarPorTamanho(String patron);
+	public List<Tiburon> buscarPorEdad(String patron);
 	public List<Tiburon> buscarPorInvestigador(Long idInvestigador);
 	public List<Investigador> buscarInvestigadores();
 	

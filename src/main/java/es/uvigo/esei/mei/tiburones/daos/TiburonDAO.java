@@ -10,5 +10,7 @@ import es.uvigo.esei.mei.tiburones.entidades.Tiburon;
 @Repository
 public interface TiburonDAO extends JpaRepository<Tiburon, Long>{
 	List<Tiburon> findByRazaContaining(String patron);
+	List<Tiburon> findByTamanho(Double patron);
+	List<Tiburon> findByEdad(Integer patron);
 	List<Tiburon> findByInvestigadores_id(Long investigadores_id);
 }
