@@ -38,22 +38,22 @@ public class AtaqueController {
 	}
 
 	@PostMapping
-	public String actualizarListarAtaque(@RequestParam(required = false) String fechaAtaque,
-			@RequestParam(required = false) Long idTiburon,
-			@RequestParam(required = false) Long idActividad,
-			@RequestParam(required = false) Long idUbicacion,
-			@RequestParam(required = false) Long idPersona, Model modelo) {
+	public String actualizarListarAtaque(@RequestParam(required = false) String fecha,
+			@RequestParam(required = false) Long tiburon,
+			@RequestParam(required = false) Long actividad,
+			@RequestParam(required = false) Long ubicacion,
+			@RequestParam(required = false) Long persona, Model modelo) {
 		List<Ataque> ataques;
-		if ((fechaAtaque != null) && !fechaAtaque.isEmpty()) {
-			ataques = ataqueService.buscarPorFecha(fechaAtaque);
-		} else if (idTiburon != null) {
-			ataques = ataqueService.buscarPorTiburon(idTiburon);
-		} else if (idActividad != null) {
-			ataques = ataqueService.buscarPorActividad(idActividad);
-		}else if (idUbicacion != null) {
-			ataques = ataqueService.buscarPorUbicacion(idUbicacion);
-		}else if (idPersona != null) {
-			ataques = ataqueService.buscarPorPersona(idPersona);
+		if ((fecha != null) && !fecha.isEmpty()) {
+			ataques = ataqueService.buscarPorFecha(fecha);
+		} else if (tiburon != null) {
+			ataques = ataqueService.buscarPorTiburon(tiburon);
+		} else if (actividad != null) {
+			ataques = ataqueService.buscarPorActividad(actividad);
+		}else if (ubicacion != null) {
+			ataques = ataqueService.buscarPorUbicacion(ubicacion);
+		}else if (persona != null) {
+			ataques = ataqueService.buscarPorPersona(persona);
 		}else {
 			ataques = ataqueService.buscarTodos();
 		}
