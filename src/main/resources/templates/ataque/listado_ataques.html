@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html th:replace="~{fragmentos/plantilla::pagina(~{this::title}, ~{this::body})}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Listado de ataques</title>
+</head>
+
+<body>
+	<h1 class="center-text">Listado de ataques</h1>
+
+	<form th:action="@{/ataques}" method="post" class="form-horizontal" id="buscar-form">
+		<div class="row">
+			<div class="col-10 form-group">
+				<div class="control-group" id="fecha">
+					<label class="col-3 control-label">Fecha</label>
+					<input class="col-10 form-control" type="date" th:name="fecha" size="30" maxlength="80" />
+				</div>
+				<div class="control-group" id="ataque">
+					<label class="col-2 control-label">Tiburon</label>
+					<select class="col-10 form-control" th:name="tiburon">
+						<option th:value="''" th:text="'Seleccionar'">Seleccionar</option>
+						<option th:each="tiburon : ${tiburones}" th:value="${tiburon.id}" th:text="${tiburon.id + ' - ' + tiburon.raza}">Tiburon</option>
+					</select>
+				</div>
+				<div class="control-group" id="actividad">
+					<label class="col-2 control-label">Actividad</label>
+					<select class="col-10 form-control" th:name="actividad">
+						<option th:value="''" th:text="'Seleccionar'">Seleccionar</option>
+						<option th:each="actividad : ${actividades}" th:value="${actividad.id}" th:text="${actividad.id + ' - ' + actividad.tipo}">Actividad</option>
+					</select>
+				</div>
+				<div class="control-group" id="ubicacion">
+					<label class="col-2 control-label">Ubicacion</label>
+					<select class="col-10 form-control" th:name="ubicacion">
+						<option th:value="''" th:text="'Seleccionar'">Seleccionar</option>
+						<option th:each="u : ${ubicaciones}" th:value="${u.id}" th:text="${u.ciudad  + ' (' + u.pais + ')'}">Ubicaciones</option>
+					</select>
+				</div>
+				<div class="control-group" id="persona">
+					<label class="col-2 control-label">Victima</label>
+					<select class="col-10 form-control" th:name="persona">
+						<option th:value="''" th:text="'Seleccionar'">Seleccionar</option>
+						<option th:each="p : ${personas}" th:value="${p.id}" th:text="${p.id + ' - ' + p.nombre}">Victimas</option>
+					</select>
+				</div>				
+			</div>
+
+
+			<div class="col-2 form-group">
+				<button type="submit" class="btn btn-lg btn-block btn-primary">Buscar</button>
+				<button type="submit" class="btn btn-lg btn-block btn-primary">Buscar todos</button>
+			</div>
+		</div>
+	</form>
+
+
+	<table id="ataques" class="table table-striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Fecha</th>
+				<th>Tiburon</th>
+				<th>Actividad</th>
+				<th>Ubicacion</th>
+				<th>Victima</th>
+				<th />
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="ataque : ${ataques}">
+				<td th:text="${ataque.id}" />
+				<td><a th:href="@{/ataques/__${ataque.id}__}" th:text="${ataque.fecha}"></a></td>
+				<td><a th:href="@{/tiburones/__${ataque.tiburon.id}__}" th:text="${ataque.tiburon.id + ' - ' + ataque.tiburon.raza}"></a></td>
+				<td><a th:href="@{/actividades/__${ataque.actividad.id}__}" th:text="${ataque.actividad.id + ' - ' + ataque.actividad.tipo}"></a></td>
+				<td><a th:href="@{/ubicaciones/__${ataque.ubicacion.id}__}" th:text="${ataque.ubicacion.id + ' - ' + ataque.ubicacion.ciudad +' (' + ataque.ubicacion.pais + ')'}"></a></td>
+				<td><a th:href="@{/personas/__${ataque.persona.id}__}" th:text="${ataque.persona.id + ' - ' + ataque.persona.nombre}"></a></td>
+				<td>
+					<a class="btn btn-primary" th:href="@{/ataques/__${ataque.id}__}">Editar</a>
+					<a class="btn btn-primary" th:href="@{/ataques/__${ataque.id}__/eliminar}">Borrar</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<br />
+
+	<a class="col-2 btn btn-lg btn-block btn-primary" th:href="@{/ataques/nuevo}">Nuevo ataque</a>
+</body>
+</html>

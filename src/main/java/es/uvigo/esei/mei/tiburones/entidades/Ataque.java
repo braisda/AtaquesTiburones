@@ -2,10 +2,10 @@ package es.uvigo.esei.mei.tiburones.entidades;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,8 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 public class Ataque implements Serializable {
@@ -27,8 +25,8 @@ public class Ataque implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Temporal(TemporalType.DATE)
-	private Date fecha;
+	@Column(name = "fecha")
+	private String fecha;
 	
 	@ManyToOne
 	@JoinColumn(name="tiburon_id")
@@ -49,24 +47,35 @@ public class Ataque implements Serializable {
 	@OneToMany(mappedBy="ataque", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@OrderBy("id asc")
 	private List<Lesion> lesiones = new ArrayList<>();
-		
+	
+	private Tiburon infoTiburon;
+	
 	public Ataque() {
 	}
 	
-	public Ataque(Date fecha) {
+	public Ataque(String fecha, Tiburon tiburon, Actividad actividad, Ubicacion ubicacion, Persona persona,
+			List<Lesion> lesiones) {
+		super();
 		this.fecha = fecha;
+		this.tiburon = tiburon;
+		this.actividad = actividad;
+		this.ubicacion = ubicacion;
+		this.persona = persona;
+		this.lesiones = lesiones;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Date getFecha() {
+	
+	public String getFecha() {
 		return fecha;
 	}
-	public void setFecha(Date fecha) {
+	
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 	
@@ -100,6 +109,22 @@ public class Ataque implements Serializable {
 
 	public void setPersona(Persona persona) {
 		this.persona = persona;
+	}
+
+	public List<Lesion> getLesiones() {
+		return lesiones;
+	}
+
+	public void setLesiones(List<Lesion> lesiones) {
+		this.lesiones = lesiones;
+	}
+
+	public Tiburon getInfoTiburon() {
+		return infoTiburon;
+	}
+
+	public void setInfoTiburon(Tiburon infoTiburon) {
+		this.infoTiburon = infoTiburon;
 	}
 
 	@Override

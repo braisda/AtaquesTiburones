@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html th:replace="~{fragmentos/plantilla::pagina(~{this::title}, ~{this::body})}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Editar/crear ataque</title>
+</head>
+
+<body>
+	<h1 class="center-text" th:text="${esNuevo} ? 'Crear ataque' : 'Editar ataque'"></h1>
+
+	<form th:object="${ataque}" class="form-horizontal" id="ataque-form" method="post">
+		<div class="form-group has-feedback">
+
+			<div class="form-group">
+				<label class="col-2 control-label">Id</label>
+				<label class="col-10 form-control" th:text="${esNuevo} ? '-' : *{id}" /></label>
+				<label class="col-2 control-label">Fecha</label>
+				<input class="col-10 form-control" type="date" th:name="fecha" size="30" maxlength="80" />
+				<label class="col-10 control-label">Tiburon</label>
+				<select class="col-10 form-control" th:field="*{tiburon}">
+					<option th:each="t : ${tiburones}" th:value="${t.id}" th:text="${t.id + ' - ' + t.raza}">Tiburon</option>
+				</select>
+				<label class="col-10 control-label">Actividad</label>
+				<select class="col-10 form-control" th:field="*{actividad}">
+					<option th:each="a : ${actividades}" th:value="${a.id}" th:text="${a.id + ' - ' + a.tipo}">Actividad</option>
+				</select>
+				<label class="col-10 control-label">Ubicacion</label>
+				<select class="col-10 form-control" th:field="*{ubicacion}">
+					<option th:each="u : ${ubicaciones}" th:value="${u.id}" th:text="${u.ciudad  + ' (' + u.pais + ')'}">Ubicacion</option>
+				</select>
+				<label class="col-10 control-label">Persona</label>
+				<select class="col-10 form-control" th:field="*{persona}">
+					<option th:each="p : ${personas}" th:value="${p.id}" th:text="${p.id + ' - ' + p.nombre}">Victima</option>
+				</select>
+				
+			</div>
+			<div class="form-group">
+				<button class="btn btn-lg btn-block btn-primary col-2" th:text="${esNuevo} ? 'Crear' : 'Guardar'" type="submit">Guardar</button>
+
+				<a class="btn btn-lg btn-block btn-secondary col-2" th:href="@{/ataques/}">Cancelar</a>
+			</div>
+		</div>
+	</form>
+
+
+
+</body>
+</html>
