@@ -41,6 +41,7 @@
 				<th>Nombre</th>
 				<th>Pais de nacimiento</th>
 				<th>Fecha de nacimiento</th>
+				<th>Ataques</th>
 				<th />
 			</tr>
 		</thead>
@@ -50,6 +51,12 @@
 				<td><a th:href="@{/personas/__${persona.id}__}" th:text="${persona.nombre}"></a></td>
 				<td th:text="${persona.paisNacimiento}" />
 				<td th:text="${persona.fechaNacimiento}" />
+				<td>
+  					<span th:if="${#lists.size(persona.ataques) == 0}" th:text="'-'"></span>
+  					<a th:if="${#lists.size(persona.ataques) == 1}" th:each="a : ${persona.ataques}"  th:href="@{/ataques/__${a.id}__}" th:text="${a.id + ' - ' + a.fecha}"></a>
+  					<a th:if="${#lists.size(persona.ataques) > 1}" th:each="a : ${persona.ataques}"  th:href="@{/ataques/__${a.id}__}" th:text="${a.id + ' - ' + a.fecha}"></a>
+  					<span th:unless="${persona.ataques}">-</span>
+				</td>
 				<td>
 					<a class="btn btn-primary" th:href="@{/personas/__${persona.id}__}">Editar</a>
 					<a class="btn btn-primary" th:href="@{/personas/__${persona.id}__/eliminar}">Borrar</a>

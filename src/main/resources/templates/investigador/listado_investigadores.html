@@ -36,6 +36,7 @@
 				<th>ID</th>
 				<th>Nombre</th>
 				<th>Institucion</th>
+				<th>Tiburones</th>
 				<th />
 			</tr>
 		</thead>
@@ -45,8 +46,14 @@
 				<td><a th:href="@{/investigadores/__${investigador.id}__}" th:text="${investigador.nombre}"></a></td>
 				<td th:text="${investigador.institucion}" />
 				<td>
-				<a class="btn btn-primary" th:href="@{/investigadores/__${investigador.id}__}">Editar</a>
-				<a class="btn btn-primary" th:href="@{/investigadores/__${investigador.id}__/eliminar}">Borrar</a>
+  					<span th:if="${#lists.size(investigador.tiburones) == 0}" th:text="'-'"></span>
+  					<a th:if="${#lists.size(investigador.tiburones) == 1}" th:each="tib : ${investigador.tiburones}"  th:href="@{/tiburones/__${tib.id}__}" th:text="${tib.id + ' - ' + tib.raza}"></a>
+  					<a th:if="${#lists.size(investigador.tiburones) > 1}" th:each="tib : ${investigador.tiburones}"  th:href="@{/tiburones/__${tib.id}__}" th:text="${tib.id + ' - ' + tib.raza + ' / '}"></a>
+  					<span th:unless="${investigador.tiburones}">-</span>
+				</td>	
+				<td>
+					<a class="btn btn-primary" th:href="@{/investigadores/__${investigador.id}__}">Editar</a>
+					<a class="btn btn-primary" th:href="@{/investigadores/__${investigador.id}__/eliminar}">Borrar</a>
 				</td>
 			</tr>
 		</tbody>

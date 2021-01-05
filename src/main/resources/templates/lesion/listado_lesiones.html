@@ -55,6 +55,8 @@
 				<th>Tipo</th>
 				<th>Mortal</th>
 				<th>Descripcion</th>
+				<th>Ataque</th>
+				<th>Hospital</th>
 				<th />
 			</tr>
 		</thead>
@@ -64,6 +66,14 @@
 				<td><a th:href="@{/lesiones/__${lesion.id}__}" th:text="${lesion.tipo}"></a></td>
 				<td th:text="${lesion.mortal}" />
 				<td th:text="${lesion.descripcion}" />
+ 				<td>
+ 					<a th:if="${lesion.ataque}" th:href="@{/ataques/__${lesion.ataque.id}__}" th:text="${lesion.ataque.id + ' - ' + lesion.ataque.fecha}"></a>
+ 					<a th:if="${lesion.ataque} == null" th:text="${'-'}"></a>
+ 				</td>
+ 				<td>
+ 					<a th:href="@{/hospitales/__${lesion.hospital.id}__}" th:text="${lesion.hospital.nombre}"></a>
+ 					<a th:if="${lesion.hospital} == null" th:text="${'-'}"></a>
+ 				</td>
 				<td>
 					<a class="btn btn-primary" th:href="@{/lesiones/__${lesion.id}__}">Editar</a>
 					<a class="btn btn-primary" th:href="@{/lesiones/__${lesion.id}__/eliminar}">Borrar</a>

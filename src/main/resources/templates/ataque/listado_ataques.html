@@ -70,10 +70,22 @@
 			<tr th:each="ataque : ${ataques}">
 				<td th:text="${ataque.id}" />
 				<td><a th:href="@{/ataques/__${ataque.id}__}" th:text="${ataque.fecha}"></a></td>
-				<td><a th:href="@{/tiburones/__${ataque.tiburon.id}__}" th:text="${ataque.tiburon.id + ' - ' + ataque.tiburon.raza}"></a></td>
-				<td><a th:href="@{/actividades/__${ataque.actividad.id}__}" th:text="${ataque.actividad.id + ' - ' + ataque.actividad.tipo}"></a></td>
-				<td><a th:href="@{/ubicaciones/__${ataque.ubicacion.id}__}" th:text="${ataque.ubicacion.id + ' - ' + ataque.ubicacion.ciudad +' (' + ataque.ubicacion.pais + ')'}"></a></td>
-				<td><a th:href="@{/personas/__${ataque.persona.id}__}" th:text="${ataque.persona.id + ' - ' + ataque.persona.nombre}"></a></td>
+				<td>
+					<a th:href="@{/tiburones/__${ataque.tiburon.id}__}" th:text="${ataque.tiburon.id + ' - ' + ataque.tiburon.raza}"></a>
+					<a th:if="${ataque.tiburon} == null" th:text="${'-'}"></a>
+				</td>
+				<td>
+					<a th:href="@{/actividades/__${ataque.actividad.id}__}" th:text="${ataque.actividad.id + ' - ' + ataque.actividad.tipo}"></a>
+					<a th:if="${ataque.actividad} == null" th:text="${'-'}"></a>
+				</td>
+				<td>
+					<a th:href="@{/ubicaciones/__${ataque.ubicacion.id}__}" th:text="${ataque.ubicacion.id + ' - ' + ataque.ubicacion.ciudad +' (' + ataque.ubicacion.pais + ')'}"></a>
+					<a th:if="${ataque.ubicacion} == null" th:text="${'-'}"></a>
+				</td>
+				<td>
+					<a th:href="@{/personas/__${ataque.persona.id}__}" th:text="${ataque.persona.id + ' - ' + ataque.persona.nombre}"></a>
+					<a th:if="${ataque.persona} == null" th:text="${'-'}"></a>
+				</td>
 				<td>
 					<a class="btn btn-primary" th:href="@{/ataques/__${ataque.id}__}">Editar</a>
 					<a class="btn btn-primary" th:href="@{/ataques/__${ataque.id}__/eliminar}">Borrar</a>
