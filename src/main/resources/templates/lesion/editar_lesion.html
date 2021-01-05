@@ -18,6 +18,7 @@
 				<input class="col-10 form-control" th:field="*{tipo}" size="30" maxlength="100" />
 				<label class="col-2 control-label">Mortal</label>
 				<select class="col-10 form-control" th:field="*{mortal}">
+					<option th:value="''" th:text="'Seleccionar'">Seleccionar</option>
 					<option th:value="true" th:text="Si">Si</option>
 					<option th:value="false" th:text="No">No</option>
 				</select>

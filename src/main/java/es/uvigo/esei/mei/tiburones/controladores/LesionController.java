@@ -39,7 +39,7 @@ public class LesionController {
 	public String actualizarListarLesion(@RequestParam(required = false) String tipo,
 			@RequestParam(required = false) String mortal,
 			@RequestParam(required = false) String descripcion,
-			@RequestParam(required = false) Long ataqueId,
+			@RequestParam(required = false) Long ataque,
 			@RequestParam(required = false) Long hospital, Model modelo) {
 		List<Lesion> lesiones;
 		if ((tipo != null) && !tipo.isEmpty()) {
@@ -48,8 +48,8 @@ public class LesionController {
 			lesiones = lesionService.buscarPorMortal(mortal);
 		} else if ((descripcion != null) && !descripcion.isEmpty()) {
 			lesiones = lesionService.buscarPorDescripcion(descripcion);
-		}else if ((ataqueId != null)) {
-			lesiones = lesionService.buscarPorAtaque(ataqueId);
+		}else if ((ataque != null)) {
+			lesiones = lesionService.buscarPorAtaque(ataque);
 		}else if ((hospital != null)) {
 			lesiones = lesionService.buscarPorHospital(hospital);
 		} else {

@@ -66,7 +66,11 @@ public class LesionServiceImpl implements LesionService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Lesion> buscarPorMortal(String patron) {
-		return lesionDAO.findByMortalContaining(patron);
+		if(patron.equals("true")) {
+			return lesionDAO.findByMortalTrue();
+		}else {
+			return lesionDAO.findByMortalFalse();
+		}
 	}
 
 	@Override
