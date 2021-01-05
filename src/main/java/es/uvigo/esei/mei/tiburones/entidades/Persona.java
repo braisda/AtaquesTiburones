@@ -43,12 +43,14 @@ public class Persona implements Serializable {
 	public Persona() {
 	}
 	
-	public Persona(String nombre, String fechaNacimiento, String paisNacimiento) {
+	public Persona(String nombre, String fechaNacimiento, String paisNacimiento, List<Ataque> ataques) {
+		super();
 		this.nombre = nombre;
 		this.fechaNacimiento = fechaNacimiento;
 		this.paisNacimiento = paisNacimiento;
+		this.ataques = ataques;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -72,6 +74,14 @@ public class Persona implements Serializable {
 	}
 	public void setPaisNacimiento(String paisNacimiento) {
 		this.paisNacimiento = paisNacimiento;
+	}
+
+	public List<Ataque> getAtaques() {
+		return ataques;
+	}
+
+	public void setAtaques(List<Ataque> ataques) {
+		this.ataques = ataques;
 	}
 
 	@Override

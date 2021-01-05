@@ -44,8 +44,9 @@ public class Lesion implements Serializable {
 	
 	public Lesion() {
 	}
-	
+
 	public Lesion(String tipo, Boolean mortal, String descripcion, Ataque ataque, Hospital hospital) {
+		super();
 		this.tipo = tipo;
 		this.mortal = mortal;
 		this.descripcion = descripcion;

@@ -35,10 +35,12 @@ public class Ubicacion implements Serializable {
 	
 	public Ubicacion() {
 	}
-	
-	public Ubicacion(String ciudad, String pais) {
+
+	public Ubicacion(String ciudad, String pais, List<Ataque> ataques) {
+		super();
 		this.ciudad = ciudad;
 		this.pais = pais;
+		this.ataques = ataques;
 	}
 
 	public Long getId() {
@@ -60,6 +62,14 @@ public class Ubicacion implements Serializable {
 		this.pais = pais;
 	}
 	
+	public List<Ataque> getAtaques() {
+		return ataques;
+	}
+
+	public void setAtaques(List<Ataque> ataques) {
+		this.ataques = ataques;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
