@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.uvigo.esei.mei.tiburones.daos.FamiliaDAO;
 import es.uvigo.esei.mei.tiburones.daos.InvestigadorDAO;
 import es.uvigo.esei.mei.tiburones.entidades.Investigador;
 
@@ -14,9 +13,6 @@ import es.uvigo.esei.mei.tiburones.entidades.Investigador;
 public class InvestigadorServiceImpl implements InvestigadorService {
 	@Autowired
 	InvestigadorDAO investigadorDAO;
-
-	@Autowired
-	FamiliaDAO familiaDAO;
 
 	@Override
 	@Transactional
