@@ -8,13 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import es.uvigo.esei.mei.tiburones.daos.ActividadDAO;
 import es.uvigo.esei.mei.tiburones.entidades.Actividad;
-import es.uvigo.esei.mei.tiburones.entidades.Investigador;
 
 @Service
 public class ActividadServiceImpl implements ActividadService {
 	@Autowired
 	ActividadDAO actividadDAO;
-
 
 	@Override
 	@Transactional
