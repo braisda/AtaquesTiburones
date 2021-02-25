@@ -1,6 +1,6 @@
-# Ejemplo Spring MVC + Thymeleaf  (SI-2020, semana 4)
-Ejemplo de proyecto Spring MVC
-Ejemplo de uso del motor de plantillas Thymeleaf
+﻿# Ejemplo Spring MVC + Thymeleaf
+- Ejemplo de proyecto Spring MVC
+- Ejemplo de uso del motor de plantillas Thymeleaf
 
 ## Previo
 ### Requisitos previos
